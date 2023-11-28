@@ -12,7 +12,16 @@ function Home() {
 
   const handleEdit = () => {
     axios.put('https://localhost:3001/update'+id)
-    .then(result => console.log(result.data))
+    .then(result => {
+      location.reload()
+    })
+    .catch(err => console.log(err));
+  }
+  const handleDelete = () => {
+    axios.delete('https://localhost:3001/delete'+id)
+    .then(result => {
+      location.reload()
+    })
     .catch(err => console.log(err));
   }
   return (
@@ -34,7 +43,7 @@ function Home() {
             <p className= {todo.task ? "line_through" : ""}>{todo.task}</p>
             </div>
             <div>
-              <span><BsFillTrashFill className = 'icon'/></span>
+              <span><BsFillTrashFill className = 'icon' onClick={() => handleDelete(todo._id)}/></span>
               </div>
         </div>
       ))}
