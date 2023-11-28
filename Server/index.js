@@ -7,7 +7,25 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect('mongodb://127.0.0.1:27017/test')
+// mongoose.connect('mongodb://127.0.0.1:27017/test')
+const mongoose = require('mongoose');
+
+// Replace the connection string below with your MongoDB Atlas connection string
+const mongoAtlasUri = 'your-mongodb-atlas-connection-string';
+
+mongoose.connect(mongoAtlasUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB Atlas!');
+});
 
 app.get('/get', (req, res) => {
     TodoModel.find()//Get data for us.
