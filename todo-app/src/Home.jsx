@@ -4,21 +4,23 @@ import axios from "axios";
 
 function Home() {
   const [todos, setTodos] = useState([]);
+  console.log(todos , 'setTodos');
+
   useEffect(( ) => {
-    axios.get('https://localhost:3001/get')
+    axios.get('https://mongodb+srv://Rorisang:EXYJzPXe0LCSDOXC@cluster0.h9b3loo.mongodb.net/?retryWrites=true&w=majority/todos')
     .then(result => setTodos(result.data))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err , 'ftyffff'));
   },[])
 
   const handleEdit = () => {
-    axios.put('https://localhost:3001/update'+id)
+    axios.put('mongodb+srv://Rorisang:EXYJzPXe0LCSDOXC@cluster0.h9b3loo.mongodb.net/?retryWrites=true&w=majority/update'+id)
     .then(result => {
-      location.reload()
+      setTodos(result.data)
     })
     .catch(err => console.log(err));
   }
   const handleDelete = () => {
-    axios.delete('https://localhost:3001/delete'+id)
+    axios.delete('mongodb+srv://Rorisang:EXYJzPXe0LCSDOXC@cluster0.h9b3loo.mongodb.net/?retryWrites=true&w=majority/delete'+id)
     .then(result => {
       location.reload()
     })

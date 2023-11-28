@@ -3,14 +3,19 @@ import axios from 'axios'
 
 function Create() {
   const [task, setTask] = useState()
-  const handleAdd = () => {
-    axios.post('http://localhost:3001/add', {task: task})
-    .then(result => {
-      location.reload()
-    })
-    .catch(err => console.log(err))
+  console.log(task,'created')
 
-  }
+  const handleAdd = () => {
+    const endpoint = 'https://mongodb+srv://Rorisang:EXYJzPXe0LCSDOXC@cluster0.h9b3loo.mongodb.net/?retryWrites=true&w=majority/add-task'; // Replace with your actual endpoint
+    const data = { task: task };
+  
+    axios.post(endpoint, data)
+      .then(result => {
+        location.reload();
+      })
+      .catch(err => console.log(err, '123456'));
+  };
+  
   return (
     <div className='create_form'>
         <input type="text"  placeholder="Enter Task" onChange={(e)=> setTask(e.target.value)} />
