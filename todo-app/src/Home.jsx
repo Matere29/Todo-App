@@ -4,7 +4,9 @@ import axios from "axios";
 
 function Home() {
   const [todos, setTodos] = useState([]);
-  console.log(todos , 'setTodos');
+  const [task, setTask] = useState("");
+
+
 
   useEffect(( ) => {
     axios.get('https://mongodb+srv://Rorisang:EXYJzPXe0LCSDOXC@cluster0.h9b3loo.mongodb.net/?retryWrites=true&w=majority/todos')
@@ -25,6 +27,10 @@ function Home() {
       location.reload()
     })
     .catch(err => console.log(err));
+  }
+  const handleInputChange = (e) => {
+    // Limit the input to 20 characters
+    setTask(e.target.value.slice(0, 20));
   }
   return (
     <div>
