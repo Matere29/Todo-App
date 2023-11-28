@@ -1,14 +1,19 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
+// Define the schema for a Todo
 const TodoSchema = new mongoose.Schema({
-    task: String,
-    done: {
-        type: Boolean,
-        default: false
-    }
-})
+  // The task of the todo, stored as a string
+  task: String,
+  
+  // Whether the todo is marked as done or not, default is false
+  done: {
+    type: Boolean,
+    default: false
+  }
+});
 
-//name of database, todos
+// Define a model based on the Todo schema, named "todos"
+const TodoModel = mongoose.model("todos", TodoSchema);
 
-const TodoModel = mongoose.model("todos", TodoSchema)
-module.exports = TodoModel
+// Export the TodoModel to be used in other files
+module.exports = TodoModel;
