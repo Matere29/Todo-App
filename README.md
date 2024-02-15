@@ -1,5 +1,6 @@
 
-# Todo App
+# Todo App with MERN Stack
+## Todo Application using MongoDB, Express, React and Node
 
 A simple todo app to manage your tasks.
 
